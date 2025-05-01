@@ -1,0 +1,6 @@
+autogen
+autogen_ext
+autogen_agentchat
+openai
+chromadb
+flask

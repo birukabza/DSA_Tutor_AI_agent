@@ -1,0 +1,4 @@
+.*venv
+executed_codes
+*.env
+*__pycache__
