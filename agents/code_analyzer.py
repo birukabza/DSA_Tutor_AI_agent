@@ -24,13 +24,13 @@ Before everything make sure the user's code is executed no matter what
      - Else reply “❌ For input `[…]` you printed `{actual}`, expected `{expected}`. Hint: <one concrete hint>”
 """
 
-docker_executor = LocalCommandLineCodeExecutor(work_dir="executed_codes")
+cmd_executor = LocalCommandLineCodeExecutor(work_dir="executed_codes")
 
 
 
 code_analyzer = CodeExecutorAgent(
     name="code_analyzer",
-    code_executor=docker_executor,
+    code_executor=cmd_executor,
     model_client=model_client,
     system_message=SYSTEM_MESSAGE,
 )

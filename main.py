@@ -3,7 +3,7 @@ from autogen_agentchat.agents import AssistantAgent
 from custom_agent_tool import SafeAgentTool
 from autogen_agentchat.ui import Console
 from model_client import model_client
-from agents.code_analyzer import code_analyzer, docker_executor
+from agents.code_analyzer import code_analyzer, cmd_executor
 from agents.course_teacher import course_teacher
 from agents.solution import solution
 from function_tools import find_similar_problems_tool,check_problem_exists_tool, generate_and_store_tool
@@ -26,7 +26,7 @@ def read_user_input():
 
     
 async def main() -> None:
-    await docker_executor.start()
+    await cmd_executor.start()
     code_analyzer_tool = SafeAgentTool(agent=code_analyzer)
     solution_tool = SafeAgentTool(agent=solution)
     course_teacher_tool = SafeAgentTool(agent=course_teacher)
@@ -103,9 +103,8 @@ async def main() -> None:
 
         await Console(user_assistant.run_stream(task=user_input)) 
         
-    await docker_executor.stop()
+    await cmd_executor.stop()
     await model_client.close()
-
 
 if __name__ == "__main__":
     asyncio.run(main())
